@@ -1,0 +1,582 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:49 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title> &#8211;Skilled hands </title>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/animate.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/font-awesome.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/flaticon.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/themify-icons.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/slick.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/prettyPhoto.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+<style>
+    #im{
+        height: 30px;
+        width:60px;
+    }
+</style>
+</head>
+<body>
+
+
+    <!--page start-->
+    <div class="page">
+
+
+        <!--header start-->
+        <header id="masthead" class="header cmt-header-style-01">
+
+            <!-- top_bar -->
+            <div class="top_bar cmt-bgcolor-darkgrey clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex flex-row align-items-center">
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-phone"></i></div>+91 6393935245
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-envelope-o"></i>
+                                </div><a href="mailto:info@example.com">info@SkilledHands.com</a>
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-clock-o"></i></div>Monday - Friday: 10:00am - 9:00pm
+                            </div>
+                            <div class="top_bar_contact_item header_search">
+                                <a href="#" class="btn-default search_btn"><i class="fa fa-search"></i></a>
+                                <div class="header_search_content">
+                                    <div class="header_search_content_inner">
+                                        <a href="#" class="close_btn"><i class="ti ti-close"></i></a>
+                                        <form id="searchbox" method="get" action= "{% url 'search' %}">
+                                            {% csrf_token %}
+                                            
+                                            <input class="search_query" type="text" id="search_query_top" name="field" placeholder="Enter Keyword" value="">
+                                            
+                                            <button type="submit" class="btn close-search"><i class="fa fa-search"></i></button>
+                                        </form>
+                                        <div class="container row">
+                                            {% for i in ser %}
+                                            <div class="card column" style="width: 18rem; margin: 0.1rem;">
+                                                <img class="card-img-top" src="{{ i.image.url }}" alt="Card Image">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ i.name }}</h5>
+                                                    <p><b>Price:</b> {{ i.price }}</p>
+                                                    <p><b>Service Provider:</b> {{ i.service_provider }}</p>
+                                                    <p class="card-text"><b>About:</b> {{ i.desc }}</p>
+                                                    <form action="addtocart" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{i.id}}" name="atc">
+                                                        <input type="hidden" value="1" name="qty">
+                                                        <button class="theme-main-button mt-10">Add to Cart</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- top_bar end-->
+            <!-- site-header-menu -->
+            <div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
+                <div class="site-header-menu-inner cmt-stickable-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <!--site-navigation -->
+                                <div class="site-navigation d-flex flex-row">
+                                    <!-- site-branding -->
+                                    <div class="site-branding mr-auto">
+                                        <a class="home-link" href='{% url "index" %}' title="shands" rel="home">
+                                            <img id="logo-img" class="img-center" src='{% static "images/favicon.png" %}' alt="logo-img"  height="75px" width="65"><br><h3>Skilled Hands</h3>
+                                        </a>
+                                    </div><!-- site-branding end -->
+                                    <div class="btn-show-menu-mobile menubar menubar--squeeze">
+                                        <span class="menubar-box">
+                                            <span class="menubar-inner"></span>
+                                        </span>
+                                    </div>
+                                    <!-- menu -->
+                                    <nav class="main-menu menu-mobile" id="menu">
+                                        <ul class="menu">
+                                            {% if user.is_authenticated %}
+                                            <li>
+                                                <a href="{% url 'profile' %}">Hi! &nbsp; {{ user.username }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'logout' %}">Logout </a>
+                                            </li>
+                                            {% endif %}
+                                            <!--<li class="mega-menu-item">
+                                                <a href="#" class="mega-menu-link">Demos</a>
+                                                <ul class="mega-submenu">
+                                                    <li><a href='{% url "index" %}'>Cleaning</a></li>
+                                                    <li><a href="../auto-mechanic/index.html">Auto-Mechanic</a></li>
+                                                    <li><a href="../electrician/index.html">Electrician</a></li>
+                                                </ul>
+                                            </li>-->
+                                            <li class="mega-menu-item">
+                                                <a href='{% url "about" %}' class="sub-menu-link">About us</a>
+                                                <!--<ul class="mega-submenu">
+                                                    <li><a href="blog.html">Blog Classic</a></li>
+                                                    <li><a href="blog-grid.html">Blog Grid View</a></li>
+                                                    <li><a href="blog-single.html">Blog Single View</a></li>
+                                                </ul>-->
+                                            </li>
+                                            <li class="mega-menu-item">
+                                                <a href="#" class="sub-menu-link">contact Us</a>
+                                                <ul class="mega-submenu">
+                                                    <li><a href='{% url "contact" %}'>contact us 1</a></li>
+                                                    <!--<li><a href="contact-us-2.html">contact us 2</a></li>
+                                                    <li><a href="contact-us-3.html">contact us 3</a></li>-->
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <div class="header_extra d-flex flex-row align-items-center justify-content-end">
+                                        <div class="header_btn">
+                                            <!--<a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href='{%url "contact" %}'>Appointment<i class="fa fa-long-arrow-right"></i></a>-->
+                                        </div>
+                                    </div>
+                                </div><!-- site-navigation end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- site-header-menu end-->
+        </header>
+        <!--header end-->
+
+
+        <!-- page-title -->
+        <div class="cmt-page-title-row cmt-bgimage-yes cmt-bg cmt-bgcolor-darkgrey">
+            <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
+            <div class="cmt-page-title-row-inner">
+                <div class="container">
+                    <div class="row align-items-center text-center">
+                        <div class="col-lg-12">
+                            <div class="page-title-heading">
+                                <h2 class="title">Services </h2>
+                            </div>
+                            <div class="breadcrumb-wrapper">
+                                <span>
+                                    <a title="Homepage" href='{% url "index" %}'>Home</a>
+                                </span>
+                                <span>Services</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+        </div><!-- page-title end-->
+        
+    <!--site-main start-->
+    <div class="site-main">
+
+
+        <!-- services2-section -->
+        <section class="cmt-row services2-section clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-7 m-auto">
+                        <!-- section title -->
+                        <div class="section-title title-style-center_text">
+                            <div class="title-header">
+                                <h2 class="title">We Provide Our Best Services for You.</h2>
+                            </div>
+                        </div>
+                        <!-- section title end -->
+                    </div>
+                </div><!-- row end -->
+                <h2 style="text-align:center;color:#e1ad01">Book any service</h2>
+                <div class="row slick_slider slick-dots-style1" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "dots":true, "arrows":false, "autoplay":false, "infinite":true,  "responsive": 
+                    [{"breakpoint":991,"settings":{"slidesToShow": 2}}, {"breakpoint":575,"settings":{"slidesToShow": 1}}]}'>
+                    
+                    <div class="col-lg-6" style="left:30%">
+                            <div class="featured-icon-box icon-align-top-content style2">                           
+                                    <h1>{{data.cate.cat_name}}</h1><br>
+                                    <img src="{{ data.image.url }}" alt="img-ser" height="100px" width="100px" />
+                                    <br>
+                               <hr>
+                    
+                                    <h3>{{ data.name }}</h3>
+                                <h2>{{data.cate}}</h2>
+                                <p>{{ data.price }}</p>
+                                <p>{{ data.desc }}</p>
+                                <h1>Ratings</h1>
+                                
+                                    <p>{{rt}}</p>
+                                {% if rat|length > 0 %}
+                                {% for i in rat %}
+                                <img src='{% static "star.png" %}' style="height: 30px;width:60px"> 
+                                    
+                                <p>{{i.username}}</p>
+
+                                <p>{{i.updated}}</p>
+                                <br>
+                                
+                                
+                                {% endfor %}
+                                {% else %}
+                                <h4>Not Rated Till Now</h4>
+                                {% endif %}
+                               
+                                <div class="mt-30">
+                                    <form action="{% url 'cart' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type ="hidden" value="{{data.id}}", name="srid">
+                                        <input type ="hidden" value="1" name="qty">
+                                        <button type="submit" value="submit" class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark">Book Now</button>
+                                    </form>
+                                </div>
+                            
+                            </div>
+                        </div>
+                   
+                         
+                    </div>
+             <!--<div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-toilet"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$55</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="kitchen-cleaning.html">Kitchen Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>As the center of your home life and the place where both literal and figurative nourishment takes place.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="kitchen-cleaning.html">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-washing-machine"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$59</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="furniture-cleaning.html">Property Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>This includes dusting, vacuuming &#038; mopping the floors in all rooms. Cleaning including all over property.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="furniture-cleaning.html" tabindex="0">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-cleaning-1"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$39</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="commercial-cleaning.html">Commercial Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>We’re aware regarding a host of techniques  and  space  enhancement services  provide.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="commercial-cleaning.html">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-cleaning-1"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$45</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="outdoor-cleaning.html">Outdoor Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>Specialists offer a range for outdoor cleaning services where both literal & figurative nourishment takes place.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="outdoor-cleaning.html" tabindex="0">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+            </div> 
+        </section> 
+        <!-- services2-section end -->
+
+
+        <!-- services-section -->
+        <!--<section class="cmt-row services-section inner_pg-bg-img7 cmt-bg cmt-bgcolor-darkgrey cmt-bgimage-yes clearfix">
+            <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">-->
+                        <!-- section-title -->
+                        <!--<div class="section-title with-desc">
+                            <div class="title-header">
+                                <h5 class="mb-10">Dont Know What To Start With?</h5>
+                                <h2 class="title">We Always Ready For Challenge</h2>
+                            </div>
+                            <div class="title-desc pt-10">
+                                <p>We are absolutely ready for the all kind challenges for the services provided. We make to give 100%.</p>
+                            </div>
+                        </div>--><!-- section-title end -->
+                        <!--<a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor mt-10" href="services-2.html">View More Services!</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="pl-30 pr-30 res-991-p-0 res-991-pt-50 mb_15">-->
+                            <!-- cmt-fid -->
+                            <!--<div class="cmt-fid inside cmt-fid-view-lefticon style2">
+                                <div class="cmt-textcolor-white">
+                                    <h4 class="cmt-fid-inner">
+                                        <span  
+                                            data-appear-animation="animateDigits" 
+                                            data-from="0" 
+                                            data-to="4568" 
+                                            data-interval="1000" 
+                                            data-before="" 
+                                            data-before-style="sup" 
+                                            data-after="" 
+                                            data-after-style="sub">4568
+                                        </span>
+                                    </h4>
+                                </div>
+                                <div class="cmt-fid-contents">
+                                    <h3 class="cmt-fid-title">Electrical Services</h3>
+                                    <p>Includes the installation, servicing, repair and maintenance of electrical and electronic equipment</p>
+                                </div>
+                            </div>--><!-- cmt-fid end -->
+                            <!--<div class="cmt-horizontal_sep width-100 mt-25 mb-40"></div>-->
+                            <!-- cmt-fid -->
+                            <!--<div class="cmt-fid inside cmt-fid-view-lefticon style2">
+                                <div class="cmt-textcolor-white">
+                                    <h4 class="cmt-fid-inner">
+                                        <span 
+                                            data-appear-animation="animateDigits" 
+                                            data-from="0" 
+                                            data-to="7893" 
+                                            data-interval="1000" 
+                                            data-before="" 
+                                            data-before-style="sup" 
+                                            data-after="" 
+                                            data-after-style="sub">7893
+                                        </span>
+                                    </h4>
+                                </div>
+                                <div class="cmt-fid-contents">
+                                    <h3 class="cmt-fid-title">Skilled-Hands Services</h3>
+                                    <p>A professional who provides installation,repairing & maintenance services. Ready to fixes for all areas.</p>
+                                </div>
+                            </div>--><!-- cmt-fid end -->
+                        <!--</div>
+                    </div>
+                </div>--><!-- row end-->
+            <!--</div>
+        </section>-->
+        <!-- services-section end -->
+
+
+   
+        <!-- broken-section END -->
+
+
+        <!--broken-section-->
+     
+
+
+        <!-- Footer -->
+        <footer class="footer cmt-bgcolor-darkgrey widget-footer clearfix">
+            <!--<div class="second-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 widget-area">
+                            <div class="widget widget_text clearfix">
+                                <div class="footer-logo">
+                                    <img id="footer-logo-img" class="img-center" src='{ % static "images/footer-logo.svg" %}' alt="footer-logo">
+                                </div>
+                                <ul class="widget_contact_wrapper">
+                                    <li><i class="fa fa-map-marker cmt-textcolor-skincolor"></i>Lucknow, Uttarpradesh
+                                            India</li>
+                                    <li><i class="fa fa-envelope-o cmt-textcolor-skincolor"></i><a href="mailto:Contact@Company.com">Contact@Company.Com</a></li>
+                                    <li><i class="fa fa-phone cmt-textcolor-skincolor"></i>+91 6352419875</li>
+                                </ul>
+                                <div class="social-icons pt-30">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a class="tooltip-top" target="_blank" href="#" data-tooltip="Facebook"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="tooltip-top" target="_blank" href="#" data-tooltip="Twitter"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class=" tooltip-top" target="_blank" href="#" data-tooltip="YouTube"><i class="fa fa-youtube-play"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="tooltip-top" target="_blank" href="#" data-tooltip="Vimeo"><i class="fa fa-vimeo"></i></a>
+                                        </li>
+                                        <li>
+                                            <a class="tooltip-top" target="_blank" href="#" data-tooltip="Linkedin"><i class="fa fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 widget-area">
+                            <div class="widget widget_nav_menu">
+                               <h3 class="widget-title">Categories</h3>
+                                <ul class="menu-footer-quick-links">
+                                    <li><a href="home-cleaning.html">Home Cleaning</a></li>
+                                    <li><a href="office-cleaning.html">Office Cleaning</a></li>
+                                    <li><a href="carpet-cleaning.html">Carpet Cleaning</a></li>
+                                    <li><a href="furniture-cleaning.html">Glass Cleaning</a></li>
+                                    <li><a href="kitchen-cleaning.html">kitchen Cleaning</a></li>
+                                    <li><a href="residential-cleaning.html">store Cleaning</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 widget-area">
+                            <div class="widget widget_nav_menu">
+                               <h3 class="widget-title">Information</h3>
+                                <ul class="menu-footer-quick-links">
+                                    <li><a href='{% static "about" %}'>About Us</a></li>
+                                    <li><a href='{% static "contact" %}'>Contact Us</a></li>
+                                    <li><a href="#">Term Condition</a></li>
+                                    <li><a href="#">Free Voucher</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 widget-area">
+                            <div class="widget widget_nav_menu">
+                               <h3 class="widget-title">Useful Links</h3>
+                                <ul class="menu-footer-quick-links">
+                                    <li><a href='{% static "contact" %}'>Store Location</a></li>
+                                    <li><a href="about-2.html">My Account</a></li>
+                                    <!--<li><a href="blog.html">Latest News</a></li>
+                                    <li><a href="contact-us-2.html">Emergency</a></li>
+                                    <li><a href="contact-us-3.html">Make Request</a></li>
+                                    <li><a href="faq.html">FAQs</a></li>-->
+                                 <!--</ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-3 widget-area">
+                            <div class="widget widget-text">-->
+                                <!--<h3 class="widget-title">Newsletter Signup</h3>
+                                <p>Subscribe To Our Newsletter And Get 10% Off Your First Purchase</p>
+                                <form  id="subscribe-form" class="newsletter-form" method="post" action="#" data-mailchimp="true">
+                                    <div class="mailchimp-inputbox" id="subscribe-content"> 
+                                        <p>
+                                            <input type="email" name="email" placeholder="Email Add.." required="">
+                                        </p>
+                                        <p><button type="submit" class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor">Subscribe</button></p>
+                                    </div>
+                                    <div id="subscribe-msg"></div>
+                                </form>-->
+                                <!--<div class="mt-30">
+                                    <img class="img-fluid" src='{ % static "images/footer-payment-cards.png" %}' alt="cards">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="bottom-footer-text">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Copyright © 2021&nbsp;<a href="#">Services</a>. All rights reserved</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div id="menu-footer-menu" class="d-flex align-items-center justify-content-end">
+                                            <ul class="footer-nav-menu">                  
+                                                <!--<li><a href="about-3.html">Privacy</a></li>
+                                                <li><a href="about.html">About Us</a></li>
+                                                <li><a href="contact-us.html">Contact</a></li>
+                                                <li><a href="blog.html">Blog</a></li>-->
+                                                <li><a href='{% url "about" %}'>About Us</a></li>
+                                                <li><a href='{% url "contact" %}'>Contact</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer end-->
+
+        <!--back-to-top start-->
+        <a id="totop" href="#top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!--back-to-top end-->
+
+
+    </div><!-- page end -->
+
+
+    <!-- Javascript -->
+    <script src='{ % static "js/jquery.min.js" %}'></script>
+    <script src='{ % static "js/jquery-migrate-1.4.1.min.js" %}'></script>
+    <script src='{ % static "js/tether.min.js" %}'></script>
+    <script src='{ % static "js/bootstrap.min.js" %}'></script> 
+    <script src='{ % static "js/jquery.easing.js" %}'></script>    
+    <script src='{ % static "js/jquery-waypoints.js" %}'></script>    
+    <script src='{ % static "js/jquery-validate.js" %}'></script> 
+    <script src='{ % static "js/slick.min.js" %}'></script>
+    <script src='{ % static "js/imagesloaded.min.js" %}'></script>
+    <script src='{ % static "js/jquery-isotope.js" %}'></script>
+    <script src='{ % static "js/jquery.prettyPhoto.js" %}'></script>
+    <script src='{ % static "js/numinate.min.js" %}'></script>
+    <script src='{ % static "js/circle-progress.min6959.js?ver=4.9.3" %}'></script>
+    <script src='{ % static "js/main.js" %}'></script>
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:51 GMT -->
+</html>

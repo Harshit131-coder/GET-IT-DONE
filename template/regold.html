@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>registration</title>
+    <style>
+        body{
+          background-image: linear-gradient(
+      115deg,
+      rgba(58, 58, 158, 0.8),
+      rgba(136, 136, 206, 0.7)
+    ),
+    url(https://cdn.freecodecamp.org/testable-projects-fcc/images/survey-form-background.jpeg);
+background-repeat:no-repeat;
+background-size: cover;
+box-sizing:content-box;
+text-align:center;
+ font-size:1em;
+ font-weight: 400;
+  line-height: 1.4;
+}
+button{
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color:#37af65;
+  border-radius: 2px;
+  cursor: pointer;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;  
+  background-color: black;
+}
+
+li {
+background-color:black;
+  float: right;
+  border-color:grey;
+}
+
+li a {
+  display: block;
+  border:2px solid  rgb(48,48,48);
+  color: white;
+  border-radius:5px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+}
+
+li a:hover:not(.active) {
+  background-color: rgb(48,48,48);
+}
+div{
+display:block;
+text-align:left;
+padding:30px;
+border-radius:5px;
+font-family:'Poppins', sans-serif;
+border-style:box;
+background-color:rgba(27, 27, 50, 0.8);;
+width:35%;
+height:auto;
+margin:auto;
+color:white;
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+input[type=password], input[type=text], input[type=email], input[type="number"],  textarea, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.login{
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+  font-size:medium;
+  color:white;
+  font-weight: 400;
+  
+}
+
+    </style>
+<body>
+  {% for i in messages %}
+                        <h4>{{i}}</h4> 
+                        {% endfor %}
+                  
+  <h1 style="color:black; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"><b>Create Account</b></h2>
+    <!--<h3 style="color:white; font-family:'Poppins', sans-serif;"><i>Thank you for taking the time to help us improve the platform</i></h3>-->
+    <div>
+      <form method="post" action="{% url 'reg' %}">
+<hr>
+<h3>Please fill this form to be registered in "Skilled Hands"</h3>
+        {% csrf_token %}
+      <!--<label for="fname" >First Name:</label><br>-->
+      <input type="text" placeholder="Enter your name"   name="fname" required ><br>
+      <!--<label for="lname" >Last Name:</label><br>-->
+      <input type="text" placeholder="Enter your Last name"  name="lname" required><br>
+      <!--<label for="lname" >Username:</label><br>-->
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+      <!--<label for="email">Email:</label><br>-->
+      <input type="email" placeholder="Enter your email"  name="email" required><br>
+      <!--<label for= "aadhar" > <b>Aadhar number  :</b></label>-->
+      <!--<input type="number" maxlength="10" size="20" name="phone" placeholder="Enter Phone number" required><br>-->
+      <!--<label for= "password"> <b>Password  : </b></label>-->
+      <input type="password" size="20" name="pass" placeholder="Enter Password" required><br>
+      <!--<label for= "cnfpass"> <b>Repeat Password  : </b></label>-->
+      <input type="password" size="20" name="cnfpass" placeholder="Renter Password" required><br>      
+      <button type="submit" name="submit" style="font-size:23px; border:none; color:white; size:30;">Submit</button>
+      <hr>
+      <a href="{% url 'login' %}"><h3 class="login">Already have an account?</h3></a>
+    </form> 
+    </div>
+</body>
+ </html>

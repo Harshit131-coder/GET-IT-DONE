@@ -1,0 +1,323 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:49 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Booking</title>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/animate.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/font-awesome.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/flaticon.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/themify-icons.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/slick.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/prettyPhoto.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+
+</head>
+<body>
+
+
+    <!--page start-->
+    <div class="page">
+
+
+        <!--header start-->
+        <header id="masthead" class="header cmt-header-style-01">
+
+            <!-- top_bar -->
+            <div class="top_bar cmt-bgcolor-darkgrey clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex flex-row align-items-center">
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-phone"></i></div>(+91) 7007676357 / 9616560244
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-envelope-o"></i>
+                                </div><a href="mailto:info@example.com">skillhands@gmail.com</a>
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-clock-o"></i></div>Monday - Friday: 10:00 - 19:00
+                            </div>
+                            <div class="top_bar_contact_item top_bar_social ml-auto p-0">
+                                <ul class="social-icons d-flex">
+                                    <li><a href="#" tabindex="-1"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" tabindex="-1"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" tabindex="-1"><i class="fa fa-flickr"></i></a></li>
+                                    <li><a href="#" tabindex="-1"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="top_bar_contact_item header_search">
+                                <a href="#" class="btn-default search_btn"><i class="fa fa-search"></i></a>
+                                <div class="header_search_content">
+                                    <div class="header_search_content_inner">
+                                        <a href="#" class="close_btn"><i class="ti ti-close"></i></a>
+                                        <form id="searchbox" method="get" action="#">
+                                            <input class="search_query" type="text" id="search_query_top" name="s" placeholder="Enter Keyword" value="">
+                                            <button type="submit" class="btn close-search"><i class="fa fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- top_bar end-->
+            <!-- site-header-menu -->
+            <div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
+                <div class="site-header-menu-inner cmt-stickable-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <!--site-navigation -->
+                                <div class="site-navigation d-flex flex-row">
+                                    <!-- site-branding -->
+                                    <div class="site-branding mr-auto">
+                                        <a class="home-link" href='{% url "index" %}' title="Cleaning" rel="home">
+                                            <img id="logo-img" class="img-center" src='{% static "images/favicon.png" %}' alt="logo-img"  height="75px" width="65"><br><h3>Skilled Hands</h3>
+                                        </a>
+                                    </div><!-- site-branding end -->
+                                    <div class="btn-show-menu-mobile menubar menubar--squeeze">
+                                        <span class="menubar-box">
+                                            <span class="menubar-inner"></span>
+                                        </span>
+                                    </div>
+                                    <!-- menu -->
+                                    <nav class="main-menu menu-mobile" id="menu">
+                                        <ul class="menu">
+                                            <!--<li class="mega-menu-item">
+                                                <a href="#" class="mega-menu-link">Demos</a>
+                                                <ul class="mega-submenu">
+                                                    <li><a href="index-2.html">Cleaning</a></li>
+                                                    <li><a href="../auto-mechanic/index.html">Auto-Mechanic</a></li>
+                                                    <li><a href="../electrician/index.html">Electrician</a></li>
+                                                </ul>
+                                            </li>-->
+                                            <li class="mega-sub-item ">
+                                                <a href='{% url "logout" %}' class="mega-sub-link">Logout</a>
+                                            </li>
+                                            <li class="mega-sub-item ">
+                                                <a href='{% url "about" %}' class="mega-sub-link">About-us</a>
+                                                <!--<ul class="mega-submenu">
+                                                    <li><a href="about.html">About Us 1</a></li>
+                                                    <li><a href="about-2.html">About Us 2</a></li>
+                                                    <li><a href="about-3.html">About Us 3</a></li>
+                                                    <li><a href="services-1.html">Services 1</a></li>
+                                                    <li><a href="services-2.html">Services 2</a></li>
+                                                    <li><a href="services-3.html">Services 3</a></li>
+                                                    <li><a href="team.html">Our Team</a></li>
+                                                    <li class="active"><a href="team-details.html">Team Details</a></li>
+                                                    <li><a href="faq.html">Faq</a></li>
+                                                    <li><a href="error-404.html">Error 404</a></li>
+                                                </ul>-->
+                                            </li>
+                                            <li class="mega-sub-item">
+                                                <a href='{% url "services" %}' class="mega-sub-link">Services</a>
+                                                <!--<ul class="mega-submenu">
+                                                    <li><a href="carpet-cleaning.html">Carpet Cleaning</a></li>
+                                                    <li><a href="furniture-cleaning.html">Furniture Cleaning</a></li>
+                                                    <li><a href="garden-cleaning.html">Garden Cleaning</a></li>
+                                                    <li><a href="outdoor-cleaning.html">Outdoor Cleaning</a></li>
+                                                    <li><a href="residential-cleaning.html">Residential Cleaning</a></li>
+                                                    <li><a href="kitchen-cleaning.html">Kitchen Cleaning</a></li>
+                                                </ul>-->
+                                            </li>
+                                            <!--<li class="mega-menu-item">
+                                                <a href="#" class="mega-menu-link">Portfolio</a>
+                                                <ul class="mega-submenu">
+                                                    <li><a href="project-style-01.html">Portfolio Overlay</a></li>
+                                                    <li class="mega-menu-item">
+                                                        <a href="#" class="mega-menu-link">Portfolio Single</a>
+                                                        <ul class="mega-submenu">
+                                                            <li><a href="office-cleaning.html">Single Style 1</a></li>
+                                                            <li><a href="home-cleaning.html">Single Style 2</a></li>
+                                                            <li><a href="apartment-cleaning.html">Single Style 3</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="mega-menu-item">
+                                                <a href="#" class="mega-menu-link">Blog</a>
+                                                <ul class="mega-submenu">
+                                                    <li><a href="blog.html">Blog Classic</a></li>
+                                                    <li><a href="blog-grid.html">Blog Grid View</a></li>
+                                                    <li><a href="blog-single.html">Blog Single View</a></li>
+                                                </ul>
+                                            </li>-->
+                                            <li class="mega-sub-item">
+                                                <a href='{% url "contact" %}' class="mega-sub-link">contact Us</a>
+                                                <!--<ul class="mega-submenu">
+                                                    <li><a href='{% url "contact" %}'>contact us 1</a></li>
+                                                    <li><a href="contact-us-2.html">contact us 2</a></li>
+                                                    <li><a href="contact-us-3.html">contact us 3</a></li>
+                                                </ul>-->
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <!--<div class="header_extra d-flex flex-row align-items-center justify-content-end">
+                                        <div class="header_btn">
+                                            <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="contact-us.html">Appointment<i class="fa fa-long-arrow-right"></i></a>
+                                        </div>
+                                    </div>-->
+                                </div><!-- site-navigation end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- site-header-menu end-->
+        </header>
+        <!--header end-->
+
+
+<!-- section title -->
+         <div class="layer-content">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <!-- section title -->
+                    <div class="section-title title-style-center_text">
+                        <div class="title-header">
+                            <h2 class="title">Make Appoinment</h2>
+                        </div>
+                    </div>
+                    <!-- section title end -->
+                </div>
+                <div class="col-xl-10 m-auto">
+                    <form id="appoinment_form" class="wrap-form appoinment_form pt-15 clearfix" method="POST" action="{% url 'booking' %}">
+                        {% csrf_token %}
+                        <div class="row no-gutters">
+                            <div class="col-lg-12">
+                                <label>
+                                    <span class="text-input">
+                                        <i class="ti-user"></i>
+                                        <input type="text" name="name"  class="form-control" placeholder="{{user.username}}">
+                                    </span>
+                                    <span class="text-input">
+                                        <i class="ti-user"></i>
+                                        <input type="text" name="add"  class="form-control" placeholder="Enter Address">
+                                    </span>
+                                    <span class="text-input">
+                                        <i class="ti-user"></i>
+                                        <input type="text" name="purp"  class="form-control" placeholder="Enter Purpose">
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-lg-12">
+                                <label>
+                                    <span class="text-input">
+                                        <i class="ti-email"></i>
+                                        <input name="phone" type="number" placeholder="Enter Phone no" required="required">
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-xl-6 col-lg-12">
+                                <label>
+                                    <!--<span class="text-input">
+                                        <i class="ti-arrow-down"></i>
+                                        <input name="" type="text" placeholder="{{item.service.name}}" required="required">
+                                    </span>-->
+                                </label>
+                            </div>
+                            <div class="col-xl-6 col-lg-12">
+                                <label>
+                                    
+                                </label>
+                            </div>
+                            <div class="col-xl-6 col-lg-12">
+                                <label>
+                                    <span class="text-input">
+                                        <i class="ti-time"></i>
+                                        <input name="date" type="text" value="DD/MM/YYYY" placeholder="Enter Date" required="required">
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-xl-6 col-lg-12">
+                                <label>
+                                    <span class="text-input">
+                                        <i class="ti-time"></i>
+                                        
+                                        <select type="option" class="theme-select-menu" name="time" >
+                                            <option value="7:00am">
+                                                7:00am
+                                                </option>
+                                                <option value="9:00am">
+                                                  9:00am
+                                                  </option>
+                                                  <option value="11:00am">
+                                                    11:00am
+                                                    </option>
+                                                    <option value="1:00pm">
+                                                        1:00pm
+                                                      </option>
+                                                      <option value="5:00pm">
+                                                        5:00pm
+                                                        </option>
+                                            </select>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="col-lg-12">
+                                <button class="submit cmt-btn cmt-btn-size-md cmt-icon-btn-right cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-dark w-100" type="submit"><a href="{% url 'process_payment' %}" >Proceed to Pay </a><i class="fa fa-long-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+<!--broken-section end-->
+
+
+<!-- pricing-section -->
+<section class="cmt-row pricing-section clearfix">
+<div class="container">
+<!-- row -->
+<div class="row">
+<div class="col-lg-7 m-auto">
+    <!-- section title -->
+    <div class="section-title title-style-center_text">
+        <div class="title-header">
+            <h2 class="title">Best Maintenance Plans</h2>
+        </div>
+        <div class="title-desc"><p>We love to raise awareness and share knowledge through our news corner. Regulars bases read regarding cleanliness manners, tips and DIY guidelines.</p></div>
+    </div>
+    <!-- section title end -->
+
+</div><!-- page end -->
+    <!-- Javascript -->
+    <script src='{% static "js/jquery.min.js" %}'></script>
+    <script src='{% static "js/jquery-migrate-1.4.1.min.js" %}'></script>
+    <script src='{% static "js/tether.min.js" %}'></script>
+    <script src='{% static "js/bootstrap.min.js" %}'></script> 
+    <script src='{% static "js/jquery.easing.js" %}'></script>    
+    <script src='{% static "js/jquery-waypoints.js" %}'></script>    
+    <script src='{% static "js/jquery-validate.js" %}'></script> 
+    <script src='{% static "js/slick.min.js" %}'></script>
+    <script src='{% static "js/imagesloaded.min.js" %}'></script>
+    <script src='{% static "js/jquery-isotope.js" %}'></script>
+    <script src='{% static "js/jquery.prettyPhoto.js" %}'></script>
+    <script src='{% static "js/numinate.min.js" %}'></script>
+    <script src='{% static "js/circle-progress.min6959.js?ver=4.9.3" %}'></script>
+    <script src='{% static "js/main.js" %}'></script>
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:51 GMT -->
+</html>

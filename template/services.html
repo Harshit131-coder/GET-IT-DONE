@@ -1,0 +1,364 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:49 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title> &#8211;Skilled hands </title>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/animate.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/font-awesome.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/flaticon.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/themify-icons.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/slick.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/prettyPhoto.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+
+</head>
+<body>
+
+
+    <!--page start-->
+    <div class="page">
+
+
+        <!--header start-->
+        <header id="masthead" class="header cmt-header-style-01">
+
+            <!-- top_bar -->
+            <div class="top_bar cmt-bgcolor-darkgrey clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex flex-row align-items-center">
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-phone"></i></div>(+91) 7007676357 / 9616560244
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-envelope-o"></i>
+                                </div><a href="mailto:info@example.com">skillhands@gmail.com</a>
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-clock-o"></i></div>Monday - Friday: 10:00 - 19:00
+                            </div>
+                            <div class="top_bar_contact_item header_search">
+                                <a href="#" class="btn-default search_btn"><i class="fa fa-search"></i></a>
+                                <div class="header_search_content">
+                                    <div class="header_search_content_inner">
+                                        <a href="#" class="close_btn"><i class="ti ti-close"></i></a>
+                                        <form id="searchbox" method="get" action= "{% url 'search' %}">
+                                            {% csrf_token %}
+                                            
+                                            <input class="search_query" type="text" id="search_query_top" name="field" placeholder="Enter Keyword" value="">
+                                            
+                                            <button type="submit" class="btn close-search"><i class="fa fa-search"></i></button>
+                                        </form>
+                                        <div class="container row">
+                                            {% for i in ser %}
+                                            <div class="card column" style="width: 18rem; margin: 0.1rem;">
+                                                <img class="card-img-top" src="{{ i.image.url }}" alt="Card Image">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ i.name }}</h5>
+                                                    <p><b>Price:</b> {{ i.price }}</p>
+                                                    <p><b>Service Provider:</b> {{ i.service_provider }}</p>
+                                                    <p class="card-text"><b>About:</b> {{ i.desc }}</p>
+                                                    <form action="addtocart" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{i.id}}" name="atc">
+                                                        <input type="hidden" value="1" name="qty">
+                                                        <button class="theme-main-button mt-10">Add to Cart</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div><!-- top_bar end-->
+            <!-- site-header-menu -->
+            <div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
+                <div class="site-header-menu-inner cmt-stickable-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <!--site-navigation -->
+                                <div class="site-navigation d-flex flex-row">
+                                    <!-- site-branding -->
+                                    <div class="site-branding mr-auto">
+                                        <a class="home-link" href='{% url "index" %}' title="Cleaning" rel="home">
+                                            <img id="logo-img" class="img-center" src='{% static "images/favicon.png" %}' alt="logo-img"  height="75px" width="65"><br><h3>Skilled Hands</h3>
+                                        </a>
+                                    </div><!-- site-branding end -->
+                                    <div class="btn-show-menu-mobile menubar menubar--squeeze">
+                                        <span class="menubar-box">
+                                            <span class="menubar-inner"></span>
+                                        </span>
+                                    </div>
+                                    <!-- menu -->
+                                    <nav class="main-menu menu-mobile" id="menu">
+                                        <ul class="menu">
+                                            <li class="mega-sub-item ">
+                                                <a href='{% url "logout" %}' class="mega-sub-link">Logout</a>
+                                            </li>
+                                            <li class="mega-sub-item ">
+                                                <a href='{% url "about" %}' class="mega-sub-link">About-us</a>
+                                                </li>
+                                            <li class="mega-sub-item">
+                                                <a href='{% url "services" %}' class="mega-sub-link">Services</a>
+                                                                                           </li>
+                                            
+                                            <li class="mega-sub-item">
+                                                <a href='{% url "contact" %}' class="mega-sub-link">contact Us</a>
+                                                
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                   
+                                </div><!-- site-navigation end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- site-header-menu end-->
+        </header>
+       <!--header end-->
+
+
+        <!-- page-title -->
+        <div class="cmt-page-title-row cmt-bgimage-yes cmt-bg cmt-bgcolor-darkgrey">
+            <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
+            <div class="cmt-page-title-row-inner">
+                <div class="container">
+                    <div class="row align-items-center text-center">
+                        <div class="col-lg-12">
+                            <div class="page-title-heading">
+                                <h2 class="title">Services 1</h2>
+                            </div>
+                            <div class="breadcrumb-wrapper">
+                                <span>
+                                    <a title="Homepage" href='{% url "index" %}'>Home</a>
+                                </span>
+                                <span>Services</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+        </div><!-- page-title end-->
+        
+    <!--site-main start-->
+    <div class="site-main">
+
+
+        <!-- services2-section -->
+        <section class="cmt-row services2-section clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-7 m-auto">
+                        <!-- section title -->
+                        <div class="section-title title-style-center_text">
+                            <div class="title-header">
+                                <h2 class="title">We Provide Our Best Services for You.</h2>
+                            </div>
+                        </div>
+                        <!-- section title end -->
+                    </div>
+                </div><!-- row end -->
+                <h2  style="color:#e1ad01;text-align: center;">Book any service</h2>
+                <div class="row slick_slider slick-dots-style1" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "dots":true, "arrows":false, "autoplay":false, "infinite":true,  "responsive": 
+                    [{"breakpoint":991,"settings":{"slidesToShow": 2}}, {"breakpoint":575,"settings":{"slidesToShow": 1}}]}'>
+                    {% for i in data %}   
+                    <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">                           
+                                    <h1>{{data.cate.cat_name}}</h1><br>
+                                    <img src="{{ i.image.url }}" alt="img-ser" height="100px" width="100px" />
+                                    <br>
+                               <hr>
+                    
+                                    <h3>{{ i.name }}</h3>
+                                <h2>{{i.cate}}</h2>
+                                <p>{{ i.price }}</p>
+                                <p>{{ i.desc }}</p>
+
+                                <div class="row">
+                                    <form action="{% url 'cart' %}" method="POST"class="p-2">
+                                        {% csrf_token %}
+                                        <input type ="hidden" value="{{i.id}}", name="srid">
+                                        <input type ="hidden" value="1" name="qty">
+                                    <button type="submit" value="submit" class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark">Book Now</button>
+                                </form>
+                                <form action="{% url 'servicesone' %}" method="POST" class="p-2">
+                                    {% csrf_token %}
+                                    <input type ="hidden" value="{{i.id}}", name="sid">
+                                    <button type="submit" value="submit" class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark">Preview</button>
+                                </form>
+                                </div>
+                            
+                            </div>
+                        </div>
+                            {% endfor %}
+                         
+                    </div>
+             <!--<div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-toilet"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$55</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="kitchen-cleaning.html">Kitchen Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>As the center of your home life and the place where both literal and figurative nourishment takes place.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="kitchen-cleaning.html">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-washing-machine"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$59</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="furniture-cleaning.html">Property Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>This includes dusting, vacuuming &#038; mopping the floors in all rooms. Cleaning including all over property.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="furniture-cleaning.html" tabindex="0">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-cleaning-1"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$39</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="commercial-cleaning.html">Commercial Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>We’re aware regarding a host of techniques  and  space  enhancement services  provide.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="commercial-cleaning.html">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-cleaning-1"></i>
+                                    </div>
+                                </div>
+                                <div class="service-rating">$45</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <h5><a href="outdoor-cleaning.html">Outdoor Cleaning</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>Specialists offer a range for outdoor cleaning services where both literal & figurative nourishment takes place.</p>
+                                    </div>
+                                </div>
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="outdoor-cleaning.html" tabindex="0">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+            </div> 
+        </section> 
+        
+        <!-- Footer -->
+        <footer class="footer cmt-bgcolor-darkgrey widget-footer clearfix">
+            <div class="bottom-footer-text">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Copyright © 2021&nbsp;<a href="#">Services</a>. All rights reserved</span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div id="menu-footer-menu" class="d-flex align-items-center justify-content-end">
+                                            <ul class="footer-nav-menu">                  
+                                                <li><a href='{% url "about" %}'>About Us</a></li>
+                                                <li><a href='{% url "contact" %}'>Contact</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer end-->
+
+        <!--back-to-top start-->
+        <a id="totop" href="#top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!--back-to-top end-->
+
+
+    </div><!-- page end -->
+
+
+    <!-- Javascript -->
+    <script src='{ % static "js/jquery.min.js" %}'></script>
+    <script src='{ % static "js/jquery-migrate-1.4.1.min.js" %}'></script>
+    <script src='{ % static "js/tether.min.js" %}'></script>
+    <script src='{ % static "js/bootstrap.min.js" %}'></script> 
+    <script src='{ % static "js/jquery.easing.js" %}'></script>    
+    <script src='{ % static "js/jquery-waypoints.js" %}'></script>    
+    <script src='{ % static "js/jquery-validate.js" %}'></script> 
+    <script src='{ % static "js/slick.min.js" %}'></script>
+    <script src='{ % static "js/imagesloaded.min.js" %}'></script>
+    <script src='{ % static "js/jquery-isotope.js" %}'></script>
+    <script src='{ % static "js/jquery.prettyPhoto.js" %}'></script>
+    <script src='{ % static "js/numinate.min.js" %}'></script>
+    <script src='{ % static "js/circle-progress.min6959.js?ver=4.9.3" %}'></script>
+    <script src='{ % static "js/main.js" %}'></script>
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:51 GMT -->
+</html>

@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/team-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:53 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title> &#8211; Skilled-Hands</title>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png"  %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/animate.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/font-awesome.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/flaticon.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/themify-icons.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/slick.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/prettyPhoto.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+<style>
+    h1, h2{
+        text-align: center;
+    }
+</style>
+
+</head>
+<body>
+
+    <!--page start-->
+    <div class="page">
+
+
+        <!--header start-->
+        <header id="masthead" class="header cmt-header-style-01">
+
+            <!-- top_bar -->
+            <div class="top_bar cmt-bgcolor-darkgrey clearfix">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-xl-12 d-flex flex-row align-items-center">
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-phone"></i></div>+91 7007676357 / 9616560244 
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-envelope-o"></i>
+                                </div><a href="mailto:info@example.com">skillhands@gmail.com</a>
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-clock-o"></i></div>Monday - Friday: 10:00 - 19:00
+                            </div>
+                            <div class="top_bar_contact_item header_search">
+                                <a href="#" class="btn-default search_btn"><i class="fa fa-search"></i></a>
+                                <div class="header_search_content">
+                                    <div class="header_search_content_inner">
+                                        <a href="#" class="close_btn"><i class="ti ti-close"></i></a>
+                                        <form id="searchbox" method="get" action= "{% url 'search' %}">
+                                            {% csrf_token %}
+                                            
+                                            <input class="search_query" type="text" id="search_query_top" name="field" placeholder="Enter Keyword" value="">
+                                            
+                                            <button type="submit" class="btn close-search"><i class="fa fa-search"></i></button>
+                                        </form>
+                                        <div class="container row">
+                                            {% for i in ser %}
+                                            <div class="card column" style="width: 18rem; margin: 0.1rem;">
+                                                <img class="card-img-top" src="{{ i.image.url }}" alt="Card Image">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ i.name }}</h5>
+                                                    <p><b>Price:</b> {{ i.price }}</p>
+                                                    <p><b>Service Provider:</b> {{ i.service_provider }}</p>
+                                                    <p class="card-text"><b>About:</b> {{ i.desc }}</p>
+                                                    <form action="addtocart" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{i.id}}" name="atc">
+                                                        <input type="hidden" value="1" name="qty">
+                                                        <button class="theme-main-button mt-10">Add to Cart</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+ 
+
+                            <div class="top_bar_contact_item top_bar_social ml-auto p-0">
+                                                           </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div><!-- top_bar end-->
+            <!-- site-header-menu -->
+            <div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
+                <div class="site-header-menu-inner cmt-stickable-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <!--site-navigation -->
+                                <div class="site-navigation d-flex flex-row">
+                                    <!-- site-branding -->
+                                    <div class="site-branding mr-auto">
+                                        <a class="home-link" href='{% url "index" %}' title="Cleaning" rel="home">
+                                            <img id="logo-img" class="img-center" src='{% static "images/favicon.png" %}' alt="logo-img"  height="75px" width="65"><br><h3>Skilled Hands</h3>
+                                        </a>
+                                    </div><!-- site-branding end -->
+                                    <div class="btn-show-menu-mobile menubar menubar--squeeze">
+                                        <span class="menubar-box">
+                                            <span class="menubar-inner"></span>
+                                        </span>
+                                    </div>
+                                    <!-- menu -->
+                                    <nav class="main-menu menu-mobile" id="menu">
+                                        <ul class="menu">
+                                            <li class="mega-menu-item ">
+                                                <a href='{% url "about" %}' class="sub-menu-link">About-us</a>
+                                                
+                                            </li>
+                                            <li class="mega-menu-item">
+                                                <a href='{% url "services" %}' class="sub-menu-link">Services</a>
+                                            </li>
+                                            
+                                            <li class="mega-menu-item">
+                                                <a href='{% url "contact" %}' class="sub-menu-link">contact Us</a>
+                                                
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    
+                                </div><!-- site-navigation end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- site-header-menu end-->
+        </header>
+        <!--header end-->
+
+
+        <!-- page-title -->
+        <div class="cmt-page-title-row cmt-bgimage-yes cmt-bg cmt-bgcolor-darkgrey">
+            <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
+            <div class="cmt-page-title-row-inner">
+                <div class="container">
+                    <div class="row align-items-center text-center">
+                        <div class="col-lg-12">
+                            <div class="page-title-heading">
+                                <!--<h2 class="title"></h2>-->
+                            </div>
+                            <div class="breadcrumb-wrapper">
+                                <span>
+                                    <a title="Homepage" href='{% url "index" %}'>HOME</a>
+                                </span>
+                                <span>Register</span>
+                            </div>
+                            <div class="container">
+                                <h2> Create Account</h2>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
+        </div><!-- page-title end-->
+
+        
+    <!--site-main start-->
+    <div class="site-main">
+         <section class="cmt-row cmt-team-single-contents clearfix">
+            
+                    <div class="card-block">
+           
+               <div class="row">
+                <div class="container">
+                    <h3>Please fill the form</h3>
+                    <hr>
+                    <div class="col-sm-12">
+                    {% for i in messages %}
+                        <h4>{{i}}</h4> 
+                        {% endfor %}
+                       
+    <!--<h3 style="color:white; font-family:'Poppins', sans-serif;"><i>Thank you for taking the time to help us improve the platform</i></h3>-->
+    <div>
+      <form method="post" action="{% url 'reg' %}">
+<hr>
+        {% csrf_token %}
+      <!--<label for="fname" >First Name:</label><br>-->
+      <input type="text" placeholder="Enter your name"   name="fname" required ><br>
+      <!--<label for="lname" >Last Name:</label><br>-->
+      <input type="text" placeholder="Enter your Last name"  name="lname" required><br>
+      <!--<label for="lname" >Username:</label><br>-->
+      <input type="text" placeholder="Enter Username" name="uname" required><br>
+      <!--<label for="email">Email:</label><br>-->
+      <input type="email" placeholder="Enter your email"  name="email" required><br>
+      <!--<label for= "aadhar" > <b>Aadhar number  :</b></label>-->
+      <!--<input type="number" maxlength="10" size="20" name="phone" placeholder="Enter Phone number" required><br>-->
+      <!--<label for= "password"> <b>Password  : </b></label>-->
+      <input type="number" maxlength="12" size="20" name="aadhar" placeholder="Enter Aadhar number" required><br>
+      <input type="password" size="20" name="pass" placeholder="Enter Password" required><br>
+      <!--<label for= "cnfpass"> <b>Repeat Password  : </b></label>-->
+      <input type="password" size="20" name="cnfpass" placeholder="Renter Password" required><br>  
+      <br>   
+    <button type="submit" value="submit" class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark">Submit</button>
+    <br><br> 
+    <h4>Already Have an Account?</h4>
+      <a href="{% url 'login' %}"><h6 class="login">Login Here</h6></a>
+    </form> 
+    </div>
+                    
+                                                          </div>
+                        </div>
+                    
+                </div>
+            </div>            
+        </section>
+    </div><!--site-main end-->
+    
+        <!-- Footer -->
+        <footer class="footer cmt-bgcolor-darkgrey widget-footer clearfix">
+            <div class="bottom-footer-text">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Copyright © 2021&nbsp;<a href="#">Skilled_hands</a>. All rights reserved. </span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div id="menu-footer-menu" class="d-flex align-items-center justify-content-end">
+                                            <ul class="footer-nav-menu">                  
+                                                <!--<li><a href="about-3.html">Privacy</a></li>-->
+                                                <li><a href='{% url "about" %}'>About Us</a></li>
+                                                <li><a href='{% url "contact" %}'>Contact</a></li>
+                                                <!--<li><a href="blog.html">Blog</a></li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer end-->
+
+        <!--back-to-top start-->
+        <a id="totop" href="#top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!--back-to-top end-->
+
+
+    </div><!-- page end -->
+
+
+    <!-- Javascript -->
+    <script src='{% static "js/jquery.min.js"  %}'></script>
+    <script src='{% static "js/jquery-migrate-1.4.1.min.js"  %}'></script>
+    <script src='{% static "js/tether.min.js"  %}'></script>
+    <script src='{% static "js/bootstrap.min.js"  %}'></script> 
+    <script src='{% static "js/jquery.easing.js"  %}'></script>    
+    <script src='{% static "js/jquery-waypoints.js"  %}'></script>    
+    <script src='{% static "js/jquery-validate.js"  %}'></script> 
+    <script src='{% static "js/slick.min.js"  %}'></script>
+    <script src='{% static "js/imagesloaded.min.js"  %}'></script>
+    <script src='{% static "js/jquery-isotope.js"  %}'></script>
+    <script src='{% static "js/jquery.prettyPhoto.js"  %}'></script>
+    <script src='{% static "js/numinate.min.js"  %}'></script>
+    <script src='{% static "js/circle-progress.min6959.js?ver=4.9.3" %}'></script>
+    <script src='{% static "js/main.js"  %}'></script>
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/team-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:54 GMT -->
+</html>

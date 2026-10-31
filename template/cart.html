@@ -1,0 +1,524 @@
+<!--{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+ #Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:49 GMT
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Cleaning &#8211; Handyman Services HTML5 Template</title>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/animate.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/font-awesome.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/flaticon.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/themify-icons.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/slick.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/prettyPhoto.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+
+</head>
+<body>
+    {% if user.is_superuser %}
+    <h1 class="jumbotron my-3">YOU ARE NOT ALLOWED HERE</h1>
+{% else %}
+
+</div>
+</div>
+</header> 
+
+
+
+
+{% if item|length == 0 %}
+<div class="container-fluid">
+<div class="jumbotron alert alert-danger">
+&times; Your Shopping Cart is empty !!! 
+</div>
+</div>
+{% else %}
+#Content area 
+
+
+
+<div class="content-area">
+
+<section class="page-section image breadcrumbs overlay">
+<div class="container">
+{% if status %}
+<h1>{{status}}</h1>
+{% else %}
+<h1>My Cart ({{item|length}})</h1>
+{% endif %}
+
+<ul class="breadcrumb">
+    <li><a href='{% static "#" %}'>Home</a></li>
+    <li><a href='{% static "#" %}'>Pages</a></li>
+    <li class="active">Blog</li>
+</ul>
+</div>
+</section>
+{% if user.is_authenticated %}
+ {% if msz %}
+<div class="{{cls}} mt-3">{{msz}}</div>
+{% endif %}
+
+<table class="table cart">
+<thead>
+<tr>
+    <th>Image</th>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for i in item %}
+    <tr id="row{{i.id}}">
+        <td><img src="{{ i.service.image.url }}" style="height:100px;width:150px;"></td>
+        <td>{{i.service.name}}</td>
+        <td> &#8377; <span id="sp{{i.id}}"> {{i.service.price}}</span></td>
+
+        <td><button onclick="remove('{{i.id}}')" class="btn btn-danger">&times; Remove</button></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+
+<br/><br/><br/><br/>
+<section class="page-section with-sidebar sidebar-right first-section">
+<div class="container">
+
+#Content 
+<section id="content" class="content col-sm-8 col-md-9">
+<h2 class="text-center">CHECKOUT</h2>
+<table class="table">
+
+<tr>
+<td>OFFERED PRICE</td>
+<td id="disc"></td>
+</tr>
+<tr>
+<td>Quantity</td>
+<td id="quantity"></td>
+</tr>
+    
+<tr>
+#<td>DELIVERY</td>
+<td>FREE</td>
+</tr>
+
+<tr>
+<td>GRAND TOTAL</td>
+<td id="g_total"></td>
+</tr>
+
+</table>
+<div class="p-3">
+<a href="#" class="btn btn-success btn-block btn-sm">PROCEED TO PAY<span id="btamt"></span></a>
+</div>
+</section>{% endif %}
+</div>
+</div>
+
+{% endif %}
+{% endif %}
+
+
+</body>
+<script>
+  function remove(id)
+			{
+				$.ajax({
+					url:"{% url 'r_cart' %}",
+					data:{delete_cart:id},
+					success:function(data){
+						$("#row"+id).hide();
+					}
+				})
+			}
+			function total()
+			{
+				$.ajax({
+					url:"{% url 'get_cart_data' %}",
+					type:"get",
+					success:function(data){
+						save=data.tot;
+						$("#quantity").html(data.quan+"item");
+						$("#g_total").html("&#8377;"+data.tot);
+					}
+				})
+			}
+			total();
+    </script>
+    </html>-->
+	{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/services-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:39:49 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title> Cart</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.min.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/animate.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/font-awesome.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/flaticon.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/themify-icons.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/slick.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/prettyPhoto.css" %}'>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+
+</head>
+<body>
+
+    <header id="masthead" class="header cmt-header-style-01">
+
+        <!-- top_bar -->
+        <div class="top_bar cmt-bgcolor-darkgrey clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 d-flex flex-row align-items-center">
+                        <div class="top_bar_contact_item">
+                            <div class="top_bar_icon"><i class="fa fa-phone"></i></div>+91 7007676357 / 9616560244 
+                        </div>
+                        <div class="top_bar_contact_item">
+                            <div class="top_bar_icon"><i class="fa fa-envelope-o"></i>
+                            </div><a href="mailto:info@example.com">SkilledHands@gmail.com</a>
+                        </div>
+                        <div class="top_bar_contact_item">
+                            <div class="top_bar_icon"><i class="fa fa-clock-o"></i></div>Monday - Friday: 10:00 am - 9:00 pm
+                        </div>
+                        <!--<div class="top_bar_contact_item top_bar_social ml-auto p-0">
+                            <ul class="social-icons d-flex">
+                                <li><a href="#" tabindex="-1"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" tabindex="-1"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" tabindex="-1"><i class="fa fa-flickr"></i></a></li>
+                                <li><a href="#" tabindex="-1"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>-->
+                        <div class="top_bar_contact_item header_search">
+                            <a href="#" class="btn-default search_btn"><i class="fa fa-search"></i></a>
+                            <div class="header_search_content">
+                                <div class="header_search_content_inner">
+                                    <a href="#" class="close_btn"><i class="ti ti-close"></i></a>
+                                    <form id="searchbox" method="get" action= "{% url 'search' %}">
+                                        {% csrf_token %}
+                                        
+                                        <input class="search_query" type="text" id="search_query_top" name="field" placeholder="Enter Keyword" value="">
+                                        
+                                        <button type="submit" class="btn close-search"><i class="fa fa-search"></i></button>
+                                    </form>
+                                    <div class="container row">
+                                        {% for i in ser %}
+                                        <div class="card column" style="width: 18rem; margin: 0.1rem;">
+                                            <img class="card-img-top" src="{{ i.image.url }}" alt="Card Image">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ i.name }}</h5>
+                                                <p><b>Price:</b> {{ i.price }}</p>
+                                                <p><b>Service Provider:</b> {{ i.service_provider }}</p>
+                                                <p class="card-text"><b>About:</b> {{ i.desc }}</p>
+                                                <form action="addtocart" method="POST">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" value="{{i.id}}" name="atc">
+                                                    <input type="hidden" value="1" name="qty">
+                                                    <button class="theme-main-button mt-10">Add to Cart</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- top_bar end-->
+        <!-- site-header-menu -->
+        <div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
+            <div class="site-header-menu-inner cmt-stickable-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <!--site-navigation -->
+                            <div class="site-navigation d-flex flex-row">
+                                <!-- site-branding -->
+                                <div class="site-branding mr-auto">
+                                    <a class="home-link" href='{% url "index" %}' title="Cleaning" rel="home" padding="25px">
+                                        <img id="logo-img" class="img-center" src='{% static "images/favicon.png" %}' alt="logo-img"  height="75px" width="65"><br><h3>Skilled Hands</h3>
+                                    </a>
+                                </div><!-- site-branding end -->
+                                <div class="btn-show-menu-mobile menubar menubar--squeeze">
+                                    <span class="menubar-box">
+                                        <span class="menubar-inner"></span>
+                                    </span>
+                                </div>
+                                <!-- menu -->
+                                <nav class="main-menu menu-mobile" id="menu">
+                                    <ul class="menu">
+                                        {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'profile' %}">Hi! &nbsp; {{ user.username }}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout' %}">Logout </a>
+                                </li>
+                                        {% if user.is_staff %}
+                                    <li><a href="{% url 'addser' %}">Add Services</a></li>
+                                    {% else %}
+                                    {% endif %}
+                                {% else %}
+
+                               <!--<li>
+                                    <ul>
+                                    <li><a href="{% url 'staffreg' %}">Staff Register</a></li>
+                                    <li><a href="{% url 'reg' %}">User Register</a></li>
+                                </ul>
+                                </li>-->
+                                <li class="mega-menu-item">
+                                    <a href="#" class="mega-menu-link">Register</a>
+                                    <ul class="mega-submenu">
+                                        <li><a href="{% url 'reg' %}">User Register</a></li>
+                                        <li><a href="{% url 'staffreg' %}">Staff Register</a></li>
+                                    </ul>
+                                </li>  
+
+                                <li>
+                                    <a href="{% url 'login' %}">Login</a>
+                                </li>
+                                {% endif %}
+                            
+                                
+                                        <li class="mega-menu-item">
+                                            <a href='{% url "about" %}' class="mega-sub-link">About</a>
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            <a href="#" class="mega-menu-link">Services</a>
+                                            <ul class="mega-submenu">
+                                                <li><a href='{% url "services" %}'>Our services</a></li>
+                                               </ul>
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            
+                                        </li>
+                                        <li class="mega-menu-item">
+                                            <a href='{% url "contact" %}' class="mega-sub-link">contact Us</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <div class="header_extra d-flex flex-row align-items-center justify-content-end">
+                                   <!--<div class="header_btn">
+                                        <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="contact-us.html">Appointment<i class="fa fa-long-arrow-right"></i></a>
+                                    </div>-->
+                                </div>
+                            </div><!-- site-navigation end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- site-header-menu end-->
+    </header>
+    
+            {% if user.is_superuser %}
+            <h1 class="jumbotron my-3">YOU ARE NOT ALLOWED HERE</h1>
+            {% else %}
+            {% if item|length == 0 %}
+            <div class="container-fluid">
+                <div class="jumbotron alert alert-danger">
+                    &times; Your Shopping Cart is empty !!!
+                </div>
+            </div>
+            {% else %}
+            <div class="content-area">
+                <section class="page-section image breadcrumbs overlay">
+                    <div class="container">
+                        {% if status %}
+                        <h1>{{status}}</h1>
+                        {% else %}
+                        <h1>My Cart ({{item|length}})</h1>
+                        {% endif %}
+                        
+                    </div>
+                </section>
+                {% if user.is_authenticated %}
+                {% if msg %}
+                <div class="{{cls}} mt-3">{{msg}}</div>
+                {% endif %}
+                <table class="table cart">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>service Name</th>
+                            <th>service Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in item %}
+                        <tr id="row{{i.id}}">
+                            <td><img src="{{ i.service.image.url }}" style="height:100px;width:150px;"
+                                    class="img-fluid"></td>
+                            <td>{{i.service.name}}</td>
+                            <td> &#8377; <span id="sp{{i.id}}"> {{i.service.price}}</span></td>
+                            <td><a href="{% url 'cart' %}"><i class="btn btn-danger ml-1 fa fa-trash"
+                                        value="remove" onclick="remove('{{i.id}}')"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+
+                <section id="content" class="content col-sm-8 col-md-9">
+                    <h2 class="text-center">CHECKOUT</h2>
+                    <table class="table">
+                        <tr>
+                            <td>Quantity</td>
+                            <td id="quantity"></td>
+                        </tr>
+                        <tr>
+                            <td>GRAND TOTAL</td>
+                            <td id="g_total"></td>
+                        </tr>
+                    </table>
+                </section>
+
+                {% comment %} <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    Checkout
+                </button><br><br><br> {% endcomment %}
+				<div class="row col-lg-4">
+				<div class="p-3 col-lg-4"></div>
+                <div class="p-3 col-lg-6">
+                    <a href="{% url 'booking' %}" class="btn btn-success btn-block btn-sm">Confirm booking?<span id="btamt"></span></a>
+                </div>
+			</div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Checkout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" action="#" method="#">
+                            <div class="form-group">
+                                <label class="col-form-label">CheckIn</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Checkout</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label ">Person's</label>
+                                <input type="number" class="form-control" min="1" max="6"
+                                    placeholder="Number of person's">
+                                <span class="text-danger">Min 1 Person and Max 6 Person's</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Total Payment</label>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Make Payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Optional JavaScript ___________  -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- jQuery -->
+        <script src="{% static 'vendor/jquery.2.2.3.min.js' %}"></script>
+        <!-- Popper js -->
+        <script src="{% static 'vendor/popper.js/popper.min.js' %}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <!-- menu  -->
+        <script src="{% static 'vendor/mega-menu/assets/js/custom.js' %}"></script>
+        <!-- Select js -->
+        <script src="{% static 'vendor/selectize.js/selectize.min.js' %}"></script>
+        <!-- jquery easing -->
+        <script src="{% static 'vendor/jquery.easing.min.js' %}"></script>
+        <!-- owl.carousel -->
+        <script src="{% static 'vendor/owl-carousel/owl.carousel.min.js' %}"></script>
+        <!-- AOS js -->
+        <script src="{% static 'vendor/aos-next/dist/aos.js' %}"></script>
+        <!-- Fancybox -->
+        <script src="{% static 'vendor/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+
+
+        <!-- Theme js -->
+        <script src="{% static 'js/theme.js' %}"></script>
+    </div> <!-- /.main-page-wrapper -->
+    <!-- remove itemm from cart start -->
+    <script>
+        function remove(id) {
+            $.ajax({
+                url: "{% url 'r_cart' %}",
+                data: {
+                    delete_cart: id
+                },
+                success: function (data) {
+                    $("#row" + id).hide();
+                }
+            })
+        }
+
+        function total() {
+            $.ajax({
+                url: "{% url 'get_cart_data' %}",
+                type: "get",
+                success: function (data) {
+                    save = data.tot;
+                    $("#quantity").html(data.quan + "item");
+                    $("#g_total").html("&#8377;" + data.tot);
+                }
+            })
+        }
+        total();
+    </script>
+
+    <!-- remove itemm from cart start -->
+
+</body>
+
+<!-- Mirrored from html.heloshape.com/troli/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Mar 2021 06:38:22 GMT -->
+
+</html>

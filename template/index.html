@@ -1,0 +1,673 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:25:18 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="Cleaning &#8211; Handyman Services HTML5 Template" />
+<meta name="author" content="https://www.cymolthemes.com/" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title> &#8211; Skilled-hands</title>
+
+<link rel="shortcut icon" href='{% static "images/favicon.png" %}' />
+<link rel="stylesheet" type="text/css" href='{% static "css/vendor.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/shortcodes.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/megamenu.css" %}'/>
+<link rel="stylesheet" type="text/css" href='{% static "css/responsive.css" %}'/>
+
+<!-- REVOLUTION LAYERS STYLES -->
+<link rel='stylesheet' id='rs-plugin-settings-css' href='{% static "revolution/css/rs6.css" %}'> 
+<style>
+    .main{
+        background:url(static/sk.png) no-repeat;
+background-size:cover;height: 100%;
+
+    }
+
+    .sticky-container{
+    padding:0px;
+    margin:0px;
+    position:fixed;
+    right:-130px;
+    top:230px;
+    width:210px;
+    z-index: 1100;
+}
+.sticky li{
+    list-style-type:none;
+    background-color:#fff;
+    color:#efefef;
+    height:43px;
+    padding:0px;border-radius:25px;
+    margin:10px 0px;;
+    -webkit-transition:all 0.25s ease-in-out;
+    -moz-transition:all 0.25s ease-in-out;
+    -o-transition:all 0.25s ease-in-out;
+    transition:all 0.25s ease-in-out;
+    cursor:pointer;
+}
+.sticky li:hover{
+    margin-left:-115px;border-radius:25px;
+}
+.sticky li img{
+    float:left;
+    margin:5px 4px;border-radius:50%;
+    margin-right:5px;
+}
+.sticky li p{
+    padding-top:5px;
+    margin:0px;border-radius:25px;
+    line-height:16px;
+    font-size:11px;
+}
+.sticky li p a{
+    text-decoration:none;
+    color:#2C3539;
+}
+.sticky li p a:hover{
+    text-decoration:underline;
+}
+
+</style>
+</head>
+<body>
+
+    <!--page start-->
+    <div class="page">
+
+        <div id="preloader" class="blobs">
+            <div class="loader-blob-center"></div>
+            <div class="loader-blob"></div>
+            <div class="loader-blob"></div>
+            <div class="loader-blob"></div>
+            <div class="loader-blob"></div>
+            <div class="loader-blob"></div>
+            <div class="loader-blob"></div>
+        </div>  
+
+
+        <!--header start-->
+        <header id="masthead" class="header cmt-header-style-01">
+
+            <!-- top_bar -->
+            <div class="top_bar cmt-bgcolor-darkgrey clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex flex-row align-items-center">
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-phone"></i></div>+91 7007676357 / 9616560244 
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-envelope-o"></i>
+                                </div><a href="mailto:info@example.com">skillhands@gmail.com</a>
+                            </div>
+                            <div class="top_bar_contact_item">
+                                <div class="top_bar_icon"><i class="fa fa-clock-o"></i></div>Monday - Friday: 10:00 am - 9:00 pm
+                            </div>
+                            
+                            <div class="top_bar_contact_item header_search">
+                                <a href="#" class="btn-default search_btn"><i class="fa fa-search"></i></a>
+                                <div class="header_search_content">
+                                    <div class="header_search_content_inner">
+                                        <a href="#" class="close_btn"><i class="ti ti-close"></i></a>
+                                        <form id="searchbox" method="get" action= "{% url 'search' %}">
+                                            {% csrf_token %}
+                                            
+                                            <input class="search_query" type="text" id="search_query_top" name="field" placeholder="Enter Keyword" value="">
+                                            
+                                            <button type="submit" class="btn close-search"><i class="fa fa-search"></i></button>
+                                        </form>
+                                        <div class="container row">
+                                            {% for i in ser %}
+                                            <div class="card column" style="width: 18rem; margin: 0.1rem;">
+                                                <img class="card-img-top" src="{{ i.image.url }}" alt="Card Image">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ i.name }}</h5>
+                                                    <p><b>Price:</b> {{ i.price }}</p>
+                                                    <p><b>Service Provider:</b> {{ i.service_provider }}</p>
+                                                    <p class="card-text"><b>About:</b> {{ i.desc }}</p>
+                                                    <form action="addtocart" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{i.id}}" name="atc">
+                                                        <input type="hidden" value="1" name="qty">
+                                                        <button class="theme-main-button mt-10">Add to Cart</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function la(src)
+                    {
+                        window.location=src;
+                    }
+                    </script>
+                 
+                
+<div class="sticky-container">
+    <ul class="sticky">
+        <li>
+            <img src="{% static 'face.png' %}" width="27" height="32">
+            <p><a href="https://www.facebook.com/uppolice/" target="_blank">Like Us on<br>Facebook</a></p>
+        </li>
+        <li>
+            <img src="{% static 'youtube.png' %}" width="27" height="32">
+            <p><a href="https://www.youtube.com/channel/UCU6wKyV1ToMUSzAVQDLUaig" target="_blank">Follow Us on<br>YouTube</a></p>
+        </li>
+         <li>
+            <img src="{% static 'faq.png' %}" width="27" height="32">
+            <p><a href="{% url 'faq' %}" target="_blank">FAQ</a></p>
+        </li>
+		
+		 
+		</ul>
+</div>
+
+
+
+
+            </div><!-- top_bar end-->
+            <!-- site-header-menu -->
+            <div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
+                <div class="site-header-menu-inner cmt-stickable-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <!--site-navigation -->
+                                <div class="site-navigation d-flex flex-row">
+                                    <!-- site-branding -->
+                                    <div class="site-branding mr-auto">
+                                        <a class="home-link" href='{% url "index" %}' title="Cleaning" rel="home" padding="25px">
+                                            <img id="logo-img" class="img-center" src='{% static "images/favicon.png" %}' alt="logo-img"  height="75px" width="65"><br><h3>Skilled Hands</h3>
+                                        </a>
+                                    </div><!-- site-branding end -->
+                                    <div class="btn-show-menu-mobile menubar menubar--squeeze">
+                                        <span class="menubar-box">
+                                            <span class="menubar-inner"></span>
+                                        </span>
+                                    </div>
+                                    <!-- menu -->
+                                    <nav class="main-menu menu-mobile" id="menu">
+                                        <ul class="menu">
+                                            {% if user.is_authenticated %}
+                                    <li>
+                                        <a href="{% url 'profile' %}">Hi! &nbsp; {{ user.username }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'logout' %}">Logout </a>
+                                    </li>
+                                            {% if user.is_staff %}
+                                        <li><a href="{% url 'addser' %}">Add Services</a></li>
+                                        {% else %}
+                                        {% endif %}
+                                    {% else %}
+
+                                   
+                                    <li class="mega-menu-item">
+                                        <a href="#" class="mega-menu-link">Register</a>
+                                        <ul class="mega-submenu">
+                                            <li><a href="{% url 'reg' %}">User Register</a></li>
+                                            <li><a href="{% url 'staffreg' %}">Staff Register</a></li>
+                                        </ul>
+                                    </li>  
+
+                                    <li>
+                                        <a href="{% url 'login' %}">Login</a>
+                                    </li>
+                                    {% endif %}
+                                
+                                    
+                                            <li class="mega-menu-item">
+                                                <a href="#" class="mega-menu-link">Services</a>
+                                                <ul class="mega-submenu">
+                                                    <li><a href='{% url "services" %}'>Our services</a></li>
+                                                   </ul>
+                                            </li>
+                                            <li class="mega-menu-item">
+                                                
+                                            </li>
+                                            <li class="mega-menu-item">
+                                                <a href='{% url "about" %}' class="mega-sub-link">About</a>
+                                            </li>
+                                           
+                                            <li class="mega-menu-item">
+                                                <a href='{% url "contact" %}' class="mega-sub-link">contact Us</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    <div class="header_extra d-flex flex-row align-items-center justify-content-end">
+                                       
+                                    </div>
+                                </div><!-- site-navigation end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- site-header-menu end-->
+        </header>
+        <!--header end-->
+
+
+        <!-- START homeclassicmain REVOLUTION SLIDER 6.0.1 -->
+        <section>
+            <div class="row" style="margin-bottom: 0 auto;">
+                <div class="col-lg-12" >
+                    <img src="{% static 'sk.png' %}" style="height: 70%;width:100%">
+                </div>
+            </div>
+        </section>
+        <!-- END REVOLUTION SLIDER -->
+
+        
+        <!--site-main start-->
+        <div class="site-main" style="margin-top: 0;">
+
+            
+           
+
+
+            <!--about-section-->
+            <section class="cmt-row about-section clearfix">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-9 col-sm-10 mx-auto">
+                            <div class="position-relative pr-30 res-991-pr-0">
+                                <!-- cmt_single_image-wrapper -->
+                                <div class="cmt_single_image-wrapper text-lg-left text-center ml_15 res-991-ml-0">
+                                    <img class="img-fluid" src='{% static "images/single_image-01.png" %}' alt="">
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                            <div class="pt-40 pr-50 res-1199-pr-0 res-1170-mr_200 res-1199-mr-0">
+                                <!-- section title -->
+                                <div class="section-title clearfix">
+                                    <div class="title-header">
+                                        <h2 class="title">Services with successful completion.</h2>
+                                    </div>
+                                    <div class="title-desc"><p>Our mission is to ensure a professional & personalised total homecare solution for all customers. Completely trustworthy and hassle free. The Company’s vision is to cater to the largest.</p>
+                                    <!--<p>With years of culture of integrity and professionalism, our credibility as business has secured us contracts with huge range of clients.</p>-->
+                                    </div>
+                                </div>
+                                <!-- section title end -->
+                                <div class="pb-30">
+                                    <div class="row d-inline-block">
+                                        <div class="col d-inline">
+                                            <ul class="d-inline-block cmt-list cmt-list-style-icon cmt-list-icon-color-darkgrey">
+                                                <li><i class="ti ti-check"></i><span class="cmt-list-li-content cmt-textcolor-darkgrey">The proffesional</span></li>
+                                                <li><i class="ti ti-check"></i><span class="cmt-list-li-content cmt-textcolor-darkgrey">Customized solutions</span></li>
+                                                <li class="pb-10"><i class="ti ti-check"></i><span class="cmt-list-li-content cmt-textcolor-darkgrey">A Supply management</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col d-inline">
+                                            <ul class="d-inline-block cmt-list cmt-list-style-icon cmt-list-icon-color-darkgrey">
+                                                <li><i class="ti ti-check"></i><span class="cmt-list-li-content cmt-textcolor-darkgrey">Standard  tasks</span></li>
+                                                <li><i class="ti ti-check"></i><span class="cmt-list-li-content cmt-textcolor-darkgrey">Specialized services</span></li>
+                                                <li class="pb-10"><i class="ti ti-check"></i><span class="cmt-list-li-content cmt-textcolor-darkgrey">Production line support</span></li>
+                                            </ul> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href='{% url "about" %}' title="">Read More<i class="fa fa-long-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-2"></div>
+                    </div><!-- row end -->
+                </div>
+            </section>
+            <!--about-section end-->
+
+
+            <!--services-section-->
+            <section class="cmt-row services-section clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-6 col-md-6 col-sm-8 m-auto">
+                            <!-- section title -->
+                            <div class="section-title title-style-center_text">
+                                <div class="title-header">
+                                    <h2 class="title">We Provide Our Best Services for You.</h2>
+                                </div>
+                            </div>
+                            <!-- section title end -->
+                        </div>
+                    </div><!-- row end -->
+                    <div class="row slick_slider slick_slider-opacity_block slick-dots-style1" data-slick='{"slidesToShow": 3, "slidesToScroll": 1, "dots":true, "arrows":false, "autoplay":false, "infinite":true,  "responsive": 
+                    [{"breakpoint":991,"settings":{"slidesToShow": 2}}, {"breakpoint":575,"settings":{"slidesToShow": 1}}]}'>
+                        
+                        {% for i in categ %}
+                        <div class="col-lg-3">
+                            <div class="featured-icon-box icon-align-top-content style2">
+                                <div class="featured-icon icon-with-bg-shape">
+                                    <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-darkgrey cmt-icon_element-size-lg">
+                                        <i class="flaticon flaticon-house"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-rating">{{ i.price }}</div>
+                                <div class="featured-content">
+                                    <div class="featured-title">
+                                        <div class="image">
+                                            <a href= "services/{{i.id}}">
+                                           <!-- <img src= "{{ i.cover_pic.url }}" alt="" /></a>-->
+                                        </div>
+                                        <h5><a href="services/{{i.id}}"> {{ i.cat_name }}</a></h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>{{ i.description }}.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-30">
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-fill cmt-icon-btn-right cmt-btn-color-dark" href="services/{{i.id}}" tabindex="0">Book Now<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </section>
+            <!--services-section-->
+            
+
+            <!-- broken-section -->
+
+            <!-- broken-section end-->
+
+
+            <!-- procedure-section -->
+            <section class="cmt-row procedure-section bg-img1 clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-7 col-md-8 col-sm-10 m-auto">
+                            <!-- section title -->
+                            <div class="section-title title-style-center_text clearfix">
+                                <div class="title-header">
+                                <h2 class="title">Get Amazing Services By Skilled-Hands Just By Following Simple Steps</h2>
+                                </div>
+                            </div>
+                            <!-- section title end -->
+                        </div>
+                    </div>
+                    <!-- row -->
+                    <div class="col-lg-12">
+                        <div class="featuredbox-number processbox">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- featured-imagebox -->
+                                    <div class="featured-icon-box icon-align-top-content style3">
+                                        <div class="featured-icon">
+                                            <div class="cmt-icon cmt-icon_element-border cmt-icon_element-color-darkgrey cmt-icon_element-size-md cmt-icon_element-style-rounded">
+                                                <i class="flaticon flaticon-wipe-1"></i>
+                                                <span class="cmt-num"></span>
+                                            </div>
+                                        </div>
+                                        <div class="featured-content">
+                                            <div class="featured-title">
+                                                <h5>Book Online Form</h5>
+                                            </div>
+                                            <div class="featured-desc">
+                                                <p>Just fill up the form of needs</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- featured-imagebox end-->
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- featured-imagebox -->
+                                    <div class="featured-icon-box icon-align-top-content style3">
+                                        <div class="featured-icon">
+                                            <div class="cmt-icon cmt-icon_element-border cmt-icon_element-color-darkgrey cmt-icon_element-size-md cmt-icon_element-style-rounded">
+                                                <i class="flaticon flaticon-thumbs-up"></i>
+                                                <span class="cmt-num"></span>
+                                            </div>
+                                        </div>
+                                        <div class="featured-content">
+                                            <div class="featured-title">
+                                                <h5>Get Confirmation</h5>
+                                            </div>
+                                            <div class="featured-desc">
+                                                <p>Our help desk available for order</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- featured-imagebox end-->
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- featured-imagebox -->
+                                    <div class="featured-icon-box icon-align-top-content style3">
+                                        <div class="featured-icon">
+                                            <div class="cmt-icon cmt-icon_element-border cmt-icon_element-color-darkgrey cmt-icon_element-size-md cmt-icon_element-style-rounded">
+                                                <i class="flaticon flaticon-soap"></i>
+                                                <span class="cmt-num"></span>
+                                            </div>
+                                        </div>
+                                        <div class="featured-content">
+                                            <div class="featured-title">
+                                                <h5>Service with Care</h5>
+                                            </div>
+                                            <div class="featured-desc">
+                                                <p>Skilled-Hands team will catch you up</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- featured-imagebox end-->
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- featured-imagebox -->
+                                    <div class="featured-icon-box icon-align-top-content style3">
+                                        <div class="featured-icon">
+                                            <div class="cmt-icon cmt-icon_element-border cmt-icon_element-color-darkgrey cmt-icon_element-size-md cmt-icon_element-style-rounded">
+                                                <i class="flaticon flaticon-vacuum-cleaner"></i>
+                                                <span class="cmt-num"></span>
+                                            </div>
+                                        </div>
+                                        <div class="featured-content">
+                                            <div class="featured-title">
+                                                <h5>Enjoy Cleanliness</h5>
+                                            </div>
+                                            <div class="featured-desc">
+                                                <p>And have the hygienic surround</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- featured-imagebox end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row end -->
+                </div>
+            </section>
+            <!-- procedure-section end -->
+
+
+            <!-- portfolio_row-section end -->
+            <section class="cmt-row portfolio_row-section clearfix">
+                <div class="container-fluid p-0">
+                    <div class="row cmt-boxes-spacing-5px slick_slider ml_10 mr_10" data-slick='{"slidesToShow": 5, "slidesToScroll": 5, "arrows":false, "autoplay":false, "infinite":true}'>
+                        <div class="cmt-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+                            <!-- featured-imagebox -->
+                            <div class="featured-imagebox featured-imagebox-portfolio style1">
+                                <!-- cmt-box-view-overlay -->
+                                <div class="cmt-box-view-overlay">
+                                    <!-- featured-thumbnail -->
+                                    <div class="featured-thumbnail">
+                                        <a href='{% url "services" %}'>
+                                         <img class="img-fluid" src='{% static "images/portfolio/project-5a.jpg" %}' height="200px" width="300px" alt="image">
+                                        </a>
+                                    </div><!-- featured-thumbnail end-->
+                                    <div class="featured-content">
+                                        <div class="featured-desc">
+                                            <p>Valuable, Sevices</p>
+                                        </div>
+                                        <div class="featured-title">
+                                            <h5><a href='{% url "services" %}'>Services</a></h5>
+                                        </div>
+                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor" href='{% url "about" %}'>Read More</a>
+                                    </div>
+                                </div><!-- cmt-box-view-overlay end-->
+                            </div><!-- featured-imagebox -->
+                        </div>
+                        <div class="cmt-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+                            <!-- featured-imagebox -->
+                            <div class="featured-imagebox featured-imagebox-portfolio style1">
+                                <!-- cmt-box-view-overlay -->
+                                <div class="cmt-box-view-overlay">
+                                    <!-- featured-thumbnail -->
+                                    <div class="featured-thumbnail">
+                                        <a href="#"> <img class="img-fluid" src='{% static "images/portfolio/project-3a.jpg" %}' height="200px" width="300px" alt="image"></a>
+                                    </div><!-- featured-thumbnail end-->
+                                    <div class="featured-content">
+                                        <div class="featured-desc">
+                                            <p>Valuable services, </p>
+                                        </div>
+                                        <div class="featured-title">
+                                            <h5><a href='{% url "services" %}'>View Services</a></h5>
+                                       </div>
+                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor" href='{% url "about" %}'>Read More</a>
+                                    </div>
+                                </div><!-- cmt-box-view-overlay end-->
+                            </div><!-- featured-imagebox -->
+                        </div>
+                        <div class="cmt-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+                            <!-- featured-imagebox -->
+                            <div class="featured-imagebox featured-imagebox-portfolio style1">
+                                <!-- cmt-box-view-overlay -->
+                                <div class="cmt-box-view-overlay">
+                                    <!-- featured-thumbnail -->
+                                    <div class="featured-thumbnail">
+                                        <a href="#"> <img class="img-fluid" src='{% static "images/portfolio/project-2a.jpg" %}' height="200px" width="300px" alt="image"></a>
+                                    </div><!-- featured-thumbnail end-->
+                                    <div class="featured-content">
+                                        <div class="featured-desc">
+                                            <p>Outdoor, Windows</p>
+                                        </div>
+                                        <div class="featured-title">
+                                            <h5><a href='{% url "services" %}'>View Services</a></h5>
+                                       </div>
+                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill  cmt-btn-color-skincolor" href='{% url "about" %}'>Read More</a>
+                                    </div>
+                                </div><!-- cmt-box-view-overlay end-->
+                            </div><!-- featured-imagebox -->
+                        </div>
+                    </div>
+                    </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pt-35 pb-40 res-991-pb-15">
+                                <!-- section title -->
+                                <div class="section-title d-lg-flex">
+                                    <div class="title-header w-100">
+                                        <h2 class="title">Protect, Cleaning & Look After Your Biggest Household Investments</h2>
+                                    </div>
+                                    <div class="title-desc w-100 pl-50 res-991-pl-0">
+                                        <p>Skilled-Hands is a fantastic addition to your property providing additional living space & room to relax and look out upon your garden. A clean conservatory looks great & is something to feel proud of.</p>
+                                    </div>
+                                </div>
+                                <!-- section title end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+           
+
+            
+                                            
+                                           
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+
+        </div><!-- site-main end -->
+
+        <!-- Footer -->
+        <footer class="footer cmt-bgcolor-darkgrey widget-footer clearfix">
+            <div class="bottom-footer-text">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="copyright">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <span>Copyright © 2021&nbsp;<a href="#">Skilled_hands</a>. All rights reserved. </span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div id="menu-footer-menu" class="d-flex align-items-center justify-content-end">
+                                            <ul class="footer-nav-menu">                  
+                                                <!--<li><a href="about-3.html">Privacy</a></li>
+                                                <li><a href="about.html">About Us</a></li>
+                                                <li><a href="contact-us.html">Contact</a></li>
+                                                <li><a href="blog.html">Blog</a></li>-->
+                                                <li><a href='{% url "about" %}'>About Us</a></li>
+                                                <li><a href='{% url "contact" %}'>Contact</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer end-->
+
+        <!--back-to-top start-->
+        <a id="totop" href="#top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!--back-to-top end-->
+
+
+    </div><!-- page end -->
+
+
+    <!-- Javascript -->
+
+    <script src='{% static "js/jquery.min.js" %}'></script>
+    <script src='{% static "js/jquery-migrate-1.4.1.min.js" %}'></script>
+    <script src='{% static "js/tether.min.js" %}'></script>
+    <script src='{% static "js/bootstrap.min.js" %}'></script>   
+    <script src='{% static "js/jquery-waypoints.js" %}'></script>
+    <script src='{% static "js/slick.min.js" %}'></script>
+    <script src='{% static "js/imagesloaded.min.js" %}'></script>
+    <script src='{% static "js/jquery-isotope.js" %}'></script>
+    <script src='{% static "js/jquery.prettyPhoto.js" %}'></script>
+    <script src='{% static "js/numinate.min.js" %}'></script>
+    <script src='{% static "js/circle-progress.min.js" %}'></script>
+    <script src='{% static "js/main.js" %}'></script>
+
+
+    <!-- Revolution Slider -->
+    
+    <script src='{% static "revolution/js/slider.js" %}'></script>
+
+    <!-- SLIDER REVOLUTION 6.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->    
+
+    <script  src='revolution/js/revolution.tools.min.js'></script>
+    <script  src='revolution/js/rs6.min.js'></script>
+
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from www.cymolthemes.com/html/mrhandy/cleaning/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Apr 2021 04:26:52 GMT -->
+</html>
